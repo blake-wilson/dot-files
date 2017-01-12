@@ -6,12 +6,13 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'AutoComplPop'
 Plugin 'bronson/vim-trailing-whitespace'
-Bundle 'klen/python-mode'
+" Bundle 'klen/python-mode'
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
@@ -62,8 +63,13 @@ augroup vimrc_autocmds
     autocmd FileType python match Excess /\%120v.*/
     autocmd FileType python set nowrap
     se nofoldenable " disable folding
-    let g:pymode_rope_goto_definition_bind = "gd"
-augroup END
+ "   let g:pymode_rope_goto_definition_bind = "gd"
 
+    autocmd FileType haskell set tabstop=8
+    autocmd FileType haskell set expandtab
+    autocmd FileType haskell set softtabstop=4
+    autocmd FileType haskell set shiftwidth=4
+    autocmd FileType haskell set shiftround
+augroup END
 
 autocmd FileType ruby nmap gd :CtrlPTag<cr>
