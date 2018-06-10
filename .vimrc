@@ -51,6 +51,9 @@ nmap q :q<CR>
 nmap <Tab> <C-w><C-w>
 nmap <F5> :!go test<CR>
 
+" Clear highlighting by pressing ENTER
+nnoremap <silent> <CR> :noh<CR><CR>
+
 colors zenburn
 
 call pathogen#infect()
@@ -73,3 +76,8 @@ augroup vimrc_autocmds
 augroup END
 
 autocmd FileType ruby nmap gd :CtrlPTag<cr>
+
+"" Go settings
+au Bufread,BufNewFile *.go noremap grn :GoRename<CR>
+
+au BufRead,BufNewFile *.frugal setlocal ft=thrift
