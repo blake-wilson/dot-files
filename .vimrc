@@ -154,3 +154,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+" Disable autocomplete for plaintext files
+au BufRead,BufNewFile,BufEnter README.md :AcpDisable
+autocmd BufLeave README.*,*.txt :AcpEnable
