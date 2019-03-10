@@ -179,3 +179,6 @@ endif
 autocmd QuickFixCmdPost *grep* cwindow
 " command! -bar -nargs=1 Ggrep silent grep <q-args> | redraw! | cw
 
+" Disable autocomplete for plaintext files
+au BufRead,BufNewFile,BufEnter README.md :AcpDisable
+autocmd BufLeave README.*,*.txt :AcpEnable
