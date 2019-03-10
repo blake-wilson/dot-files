@@ -13,14 +13,16 @@ Plugin 'AutoComplPop'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'klen/python-mode'
 Plugin 'tpope/vim-fugitive'
+Plugin 'machakann/vim-highlightedyank'
 " Plugin 'scrooloose/syntastic'
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'elzr/vim-json'
+Plugin 'hashivim/vim-terraform'
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
-let g:go_fmt_options = "-local=github.com/Workiva,github.com/Workiva/skaardb"
+let g:go_fmt_options = "-local=gopkg.in/launchdarkly,github.com/launchdarkly"
 
 " jump to last edited position in file instead of always starting at the top
 " line, leftmost column
@@ -69,8 +71,14 @@ se nojoinspaces
 
 nmap w :w<CR>
 nmap q :q<CR>
-nmap <Tab> <C-w><C-w>
+" nmap <Tab> <C-w><C-w>
 nmap <F5> :!go test<CR>
+
+" Move between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "" move between tabs
 nnoremap th  :tabfirst<CR>
@@ -80,6 +88,9 @@ nnoremap tl  :tablast<CR>
 
 " Clear highlighting by pressing ENTER
 nnoremap <silent> <CR> :noh<CR><CR>
+
+" Remap : to ;
+nnoremap ; :
 
 colors zenburn
 se colorcolumn=100
@@ -149,8 +160,22 @@ au Bufread,BufNewFile *.go noremap grn :GoRename<CR>
 
 au BufRead,BufNewFile *.frugal setlocal ft=thrift
 
-" ctrk+p optimization
+" ctrl+p optimization
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+if has('nvim')
+  " ESC puts terminal into normal mode
+  tnoremap <Esc> <C-\><C-n>
+  " M-[ lets us send literal esc to terminal programs
+  tnoremap <M-[> <Esc>
+  " C-v ESC lets us send literal esc to terminal programs
+  tnoremap <C-v><Esc> <Esc>
+endif
+
+" Open Grep results in quickfix window
+autocmd QuickFixCmdPost *grep* cwindow
+" command! -bar -nargs=1 Ggrep silent grep <q-args> | redraw! | cw
+
