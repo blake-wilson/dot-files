@@ -4,6 +4,9 @@ filetype off
 se rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+set rtp+=~/.config/nvim/bundle/Vundle.vim " Set rtp for neovim
+call vundle#begin()
+
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'fatih/vim-go'
@@ -133,9 +136,6 @@ au BufRead,BufNewFile *.go noremap grn :GoRename<CR>
 au BufRead,BufNewFile *.frugal setlocal ft=thrift
 
 "" syntastic customizations
-
-call pathogen#infect()
-call pathogen#helptags()
 
 augroup vimrc_autocmds
     autocmd!

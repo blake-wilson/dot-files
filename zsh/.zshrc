@@ -5,19 +5,13 @@ export PATH=$PATH:$HOME/go_appengine
 export VENV=local
 export TERM=xterm-256color
 
-source /usr/local/bin/virtualenvwrapper.sh
-
 export MAVEN_OPTS="-Xmx4096m -Xss1024m -XX:MaxPermSize=128m"
 export ANT_OPTS="-Xms512m -Xmx1024m"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 
-source /usr/local/bin/virtualenvwrapper.sh
 export M2_HOME=/usr/local/Cellar/maven30/3.0.5/libexec
-
-export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
 
 # Set up the prompt
 
@@ -57,12 +51,15 @@ export PS1="%~ \$"
 export DEFAULT_USER=`whoami`
 
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
 
 # use more up-to-date ctags
 export PATH=$PATH:/usr/local/bin/ctags
 
 alias tmux="TERM=screen-256color-bce tmux"
+
+if [ -x "$(command -v nvim)" ]; then
+	alias vi=nvim
+fi
 
 alias ddev="pub run dart_dev"
 
