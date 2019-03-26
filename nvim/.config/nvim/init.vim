@@ -182,3 +182,8 @@ autocmd QuickFixCmdPost *grep* cwindow
 " Disable autocomplete for plaintext files
 au BufRead,BufNewFile,BufEnter README.md :AcpDisable
 autocmd BufLeave README.*,*.txt :AcpEnable
+
+if has("nvim")
+    au BufEnter,TermOpen term://* AcpDisable
+    au BufLeave term://* AcpEnable
+endif
