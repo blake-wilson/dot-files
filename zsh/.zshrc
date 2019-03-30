@@ -5,6 +5,12 @@ export PATH=$PATH:$HOME/go_appengine
 export VENV=local
 export TERM=xterm-256color
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 export MAVEN_OPTS="-Xmx4096m -Xss1024m -XX:MaxPermSize=128m"
 export ANT_OPTS="-Xms512m -Xmx1024m"
 
@@ -82,7 +88,7 @@ dt-format() {
 export PATH=$PATH:~/.pub-cache/bin
 
 alias woman=man
-alias ls='ls -G'
+alias ls='ls --color=auto'
 
 gocover() {
     go test "$1" -coverprofile=coverage.out
