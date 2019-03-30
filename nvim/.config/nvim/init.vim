@@ -22,6 +22,7 @@ Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'elzr/vim-json'
 Plugin 'hashivim/vim-terraform'
+Plugin 'chriskempson/base16-vim'
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
@@ -95,9 +96,14 @@ nnoremap <silent> <CR> :noh<CR><CR>
 " Remap : to ;
 nnoremap ; :
 
-colors zenburn
+" colors zenburn
 se colorcolumn=100
 set ic
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 au FileType python setl ts=4 sw=4 et
 
