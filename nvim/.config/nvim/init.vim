@@ -12,9 +12,9 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'fatih/vim-go'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
-Plugin 'AutoComplPop'
+" Plugin 'AutoComplPop'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'klen/python-mode'
+Plugin 'python-mode/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'machakann/vim-highlightedyank'
 " Plugin 'scrooloose/syntastic'
@@ -23,17 +23,20 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'elzr/vim-json'
 Plugin 'hashivim/vim-terraform'
 Plugin 'chriskempson/base16-vim'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'zchee/deoplete-go'
+
+call vundle#end()
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = "-local=gopkg.in/launchdarkly,github.com/launchdarkly"
+let g:deoplete#sources#go#gocode_binary = "$GOPATH/bin/gocode"
 
 " jump to last edited position in file instead of always starting at the top
 " line, leftmost column
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
   \| exe "normal! g'\"" | endif
-
-call vundle#end()
 
 filetype plugin indent on
 syntax enable
@@ -193,3 +196,5 @@ if has("nvim")
     au BufEnter,TermOpen term://* AcpDisable
     au BufLeave term://* AcpEnable
 endif
+
+call deoplete#enable()
