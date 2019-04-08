@@ -197,6 +197,9 @@ if has("nvim")
     au BufLeave term://* AcpEnable
 endif
 
+" update find/replace live
+:set inccommand=nosplit
+
 call deoplete#enable()
 " Disable scratch window for autocomplete
 set completeopt-=preview
