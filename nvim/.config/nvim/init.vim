@@ -198,3 +198,5 @@ if has("nvim")
 endif
 
 call deoplete#enable()
+" Disable scratch window for autocomplete
+set completeopt-=preview
