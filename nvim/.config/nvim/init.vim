@@ -25,6 +25,8 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'chriskempson/base16-vim'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-go'
+Plugin 'kshenoy/vim-signature'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 
@@ -32,6 +34,9 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = "-local=gopkg.in/launchdarkly,github.com/launchdarkly"
 let g:deoplete#sources#go#gocode_binary = "$GOPATH/bin/gocode"
+
+" auto-format Terraform on save
+let g:terraform_fmt_on_save=1
 
 " jump to last edited position in file instead of always starting at the top
 " line, leftmost column
@@ -42,6 +47,8 @@ filetype plugin indent on
 syntax enable
 
 se nu
+
+set nomodeline
 
 " enter spaces when tab is pressed:
 set expandtab
