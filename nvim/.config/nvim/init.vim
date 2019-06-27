@@ -189,6 +189,10 @@ if has('nvim')
   tnoremap <M-[> <Esc>
   " C-v ESC lets us send literal esc to terminal programs
   tnoremap <C-v><Esc> <Esc>
+
+  " Use nvr as git editor to prevent nested vim windows
+  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+  autocmd FileType gitcommit set bufhidden=delete
 endif
 
 " Open Grep results in quickfix window
