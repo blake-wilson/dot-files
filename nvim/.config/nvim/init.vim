@@ -27,6 +27,8 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-go'
 Plugin 'sebastianmarkow/deoplete-rust'
 Plugin 'rust-lang/rust.vim'
+Plugin 'kshenoy/vim-signature'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 
@@ -39,6 +41,9 @@ let g:deoplete#sources#rust#racer_binary="/home/blake/.cargo/bin/racer"
 let g:deoplete#sources#rust#rust_source_path="/home/blake/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 let g:rustfmt_autosave = 1
 
+" auto-format Terraform on save
+let g:terraform_fmt_on_save=1
+
 " jump to last edited position in file instead of always starting at the top
 " line, leftmost column
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -48,6 +53,8 @@ filetype plugin indent on
 syntax enable
 
 se nu
+
+set nomodeline
 
 " enter spaces when tab is pressed:
 set expandtab
@@ -188,6 +195,10 @@ if has('nvim')
   tnoremap <M-[> <Esc>
   " C-v ESC lets us send literal esc to terminal programs
   tnoremap <C-v><Esc> <Esc>
+
+  " Use nvr as git editor to prevent nested vim windows
+  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+  autocmd FileType gitcommit set bufhidden=delete
 endif
 
 " Open Grep results in quickfix window
