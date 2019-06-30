@@ -1,8 +1,8 @@
 se nocompatible
 filetype off
 
-se rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" se rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim " Set rtp for neovim
 call vundle#begin()
@@ -25,6 +25,8 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'chriskempson/base16-vim'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-go'
+Plugin 'sebastianmarkow/deoplete-rust'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
@@ -32,6 +34,10 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = "-local=gopkg.in/launchdarkly,github.com/launchdarkly"
 let g:deoplete#sources#go#gocode_binary = "$GOPATH/bin/gocode"
+
+let g:deoplete#sources#rust#racer_binary="/home/blake/.cargo/bin/racer"
+let g:deoplete#sources#rust#rust_source_path="/home/blake/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+let g:rustfmt_autosave = 1
 
 " jump to last edited position in file instead of always starting at the top
 " line, leftmost column
@@ -196,6 +202,10 @@ autocmd QuickFixCmdPost *grep* cwindow
 " update find/replace live
 :set inccommand=nosplit
 
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+
 call deoplete#enable()
+
 " Disable scratch window for autocomplete
 set completeopt-=preview

@@ -63,6 +63,7 @@ export PATH=$PATH:/usr/local/bin/ctags
 
 alias tmux="TERM=screen-256color-bce tmux"
 
+alias sudo='sudo '
 if [ -x "$(command -v nvim)" ]; then
 	alias vi=nvim
 fi
@@ -152,3 +153,4 @@ function docker-clean() {
     docker rmi -f $(docker images -q)
 }
 
+source $HOME/.cargo/env
