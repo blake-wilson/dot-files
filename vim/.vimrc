@@ -134,9 +134,6 @@ au BufRead,BufNewFile *.frugal setlocal ft=thrift
 
 "" syntastic customizations
 
-call pathogen#infect()
-call pathogen#helptags()
-
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 120
