@@ -4,6 +4,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/go_appengine
 export VENV=local
 export TERM=xterm-256color
+export RUST_SRC_PATH=`rustc --print sysroot`/lib/rustlib/src/rust/src
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
