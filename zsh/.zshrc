@@ -28,9 +28,15 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+# Keep 100000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=100000
+SAVEHIST=100000
+setopt EXTENDED_HISTORY
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -156,3 +162,10 @@ function docker-clean() {
 }
 
 source $HOME/.cargo/env
+
+# Shortcut for creating a git branch off of origin/HEAD
+mkbr() {
+  git fetch origin
+  HEAD_BRANCH="$(git remote show origin 2>/dev/null | awk '/HEAD branch/ {print $NF}')"
+  git checkout -b "$1" "origin/$HEAD_BRANCH"
+}
