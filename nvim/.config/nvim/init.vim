@@ -29,6 +29,9 @@ Plugin 'sebastianmarkow/deoplete-rust'
 Plugin 'rust-lang/rust.vim'
 Plugin 'kshenoy/vim-signature'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'nvim-lua/popup.nvim'
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
 
 call vundle#end()
 
@@ -200,6 +203,9 @@ if has('nvim')
   let $GIT_EDITOR = 'nvr -cc split --remote-wait'
   autocmd FileType gitcommit set bufhidden=delete
 endif
+
+" Telescope customizations
+autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
 
 " Open Grep results in quickfix window
 autocmd QuickFixCmdPost *grep* cwindow
