@@ -14,9 +14,12 @@ lvim.keys.normal_mode["C-H"] = "<C-W><C-H>"
 
 lvim.keys.normal_mode[";"] = ":"
 
+
 lvim.plugins = {
+  "puremourning/vimspector",
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
+  "mfussenegger/nvim-dap-python",
   {
     "scalameta/nvim-metals",
     config = function()
@@ -66,11 +69,36 @@ lvim.format_on_save.enabled = true
 --   },
 -- }
 
+-- local pythonPath = function()
+--   local cwd = vim.loop.cwd()
+--   if vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+--     return cwd .. '/.venv/bin/python'
+--   else
+--     return '/usr/bin/python3'
+--   end
+-- end
+
+local dap = require("dap")
+require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+
 lvim.builtin.telescope.defaults = {
   -- use fd to "find files" and return absolute paths
   find_command = { "fd", "-t=f", "-a" },
   path_display = { "absolute" },
   wrap_results = true
+}
+
+lvim.builtin.which_key.mappings["d"] = {
+  name = "Vimspector",
+  t = { "<Plug>VimspectorToggleBreakpoint", "Toggle breakpoint" },
+  v = { "<Plug>VimspectorGoToCurrentLine", "Continue to current line" },
+  c = { "<Plug>VimspectorContinue", "Continue Debugger" },
+  s = { "<Plug>VimspectorStepOver", "Step over" },
+  d = { "<Plug>VimspectorStepInto", "Step into" },
+  x = { "<Plug>VimspectorStop", "Stop debugging" },
+  n = { "<Plug>VimspectorRestart", "Restart debugger" },
+  l = { ":call vimspector#Launch()<cr>", "Launch debugger" },
+
 }
 
 ------------------------
@@ -162,6 +190,7 @@ gopher.setup {
     iferr = "iferr",
   },
 }
+
 
 -- lvim.builtin.telescope.defaults.find_files.wrap_results = true
 -- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 200
